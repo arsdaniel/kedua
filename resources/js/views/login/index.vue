@@ -188,7 +188,7 @@ $light_gray: rgb(7, 7, 7);
 </style>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-$bg: #11c461;
+$bg: #0ed149af;
 $dark_gray: #0a0a0a;
 $light_gray: rgb(14, 13, 13);
 .login-container {
@@ -197,13 +197,11 @@ $light_gray: rgb(14, 13, 13);
   width: 100%;
   background-color: $bg;
   .login-form {
-    position: absolute;
-    left: 0;
-    right: 0;
-    width: 520px;
-    max-width: 100%;
-    padding: 35px 35px 15px 35px;
-    margin: 120px auto;
+    border: 1px solid #b2b9c7;
+    width: 350px;
+    margin: 150px auto;
+    padding: 20px 30px;
+    border-radius: 10px;
     background-color: #eee;
   }
   .tips {
@@ -240,7 +238,7 @@ $light_gray: rgb(14, 13, 13);
     user-select: none;
   }
   .set-language {
-    color: rgb(245, 55, 112);
+    color: rgb(12, 121, 245);
     position: absolute;
     top: 40px;
     right: 35px;
