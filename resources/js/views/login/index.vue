@@ -155,8 +155,8 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-$bg: #101110ea;
-$light_gray: #eee;
+$bg: rgba(0, 0, 0, 0.1);
+$light_gray: rgb(7, 7, 7);
 
 /* reset element-ui css */
 .login-container {
@@ -174,7 +174,7 @@ $light_gray: #eee;
       height: 47px;
       &:-webkit-autofill {
         -webkit-box-shadow: 0 0 0px 1000px $bg inset !important;
-        -webkit-text-fill-color: #fff !important;
+        -webkit-text-fill-color: rgb(14, 1, 1) !important;
       }
     }
   }
@@ -188,9 +188,9 @@ $light_gray: #eee;
 </style>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-$bg: #0dca36;
-$dark_gray: #889aa4;
-$light_gray: #eee;
+$bg: #11c461;
+$dark_gray: #0a0a0a;
+$light_gray: rgb(14, 13, 13);
 .login-container {
   position: fixed;
   height: 100%;
@@ -204,10 +204,11 @@ $light_gray: #eee;
     max-width: 100%;
     padding: 35px 35px 15px 35px;
     margin: 120px auto;
+    background-color: #eee;
   }
   .tips {
     font-size: 14px;
-    color: #fff;
+    color: rgb(29, 27, 27);
     margin-bottom: 10px;
     span {
       &:first-of-type {
@@ -239,7 +240,7 @@ $light_gray: #eee;
     user-select: none;
   }
   .set-language {
-    color: #fff;
+    color: rgb(245, 55, 112);
     position: absolute;
     top: 40px;
     right: 35px;

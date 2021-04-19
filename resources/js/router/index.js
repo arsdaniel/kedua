@@ -49,6 +49,11 @@ import permissionRoutes from './modules/permission';
 
 export const constantRoutes = [
   {
+    path: '/register',
+    component: () => import('@/views/register/index'),
+    hidden: true,
+  },
+  {
     path: '/redirect',
     component: Layout,
     hidden: true,

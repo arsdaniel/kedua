@@ -190,6 +190,8 @@ export default {
     'confirmPassword': 'Confirm password',
     'name': 'Name',
     'email': 'Email',
+    'reg_number': 'Reg Number',
+    'school': 'School',
   },
   roles: {
     description: {

@@ -1,5 +1,5 @@
 {
-  "name": "laravue",
+  "name": "walisongo",
   "version": "0.13.1",
   "description": "A beautiful dashboard for Laravel built by VueJS",
   "author": "Tuan Duong <bacduong@gmail.com>",
@@ -74,6 +74,7 @@
     "nprogress": "^0.2.0",
     "path-to-regexp": "^3.1.0",
     "screenfull": "^4.2.1",
+    "socket.io": "^4.0.1",
     "sortablejs": "^1.10.2",
     "tui-editor": "^1.4.6",
     "vue": "2.6.10",
@@ -89,5 +90,17 @@
   "browserslist": [
     "last 2 version",
     "> 1%"
-  ]
+  ],
+  "main": ".eslintrc.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arsdaniel/kedua.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arsdaniel/kedua/issues"
+  },
+  "homepage": "https://github.com/arsdaniel/kedua#readme"
 }

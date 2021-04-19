@@ -14,14 +14,14 @@ const santriRoutes = {
     {
       path: 'addsantri',
       name: 'Add Santri',
-      component: () => import('@/views/form/index'),
-      meta: { title: 'addSantri', icon: 'form' },
+      component: () => import('@/views/santri/addsantri'),
+      meta: { title: 'addSantri', icon: 'el-icon-plus' },
     },
     {
-      path: 'icons',
-      component: () => import('@/views/icons/index'),
-      name: 'Icons',
-      meta: { title: 'icons', icon: 'el-icon-info', noCache: true },
+      path: 'listsantri',
+      component: () => import('@/views/santri/index'),
+      name: 'listsantri',
+      meta: { title: 'listsantri', icon: 'list', noCache: true },
     },
     {
       path: 'tab',

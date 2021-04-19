@@ -27,7 +27,7 @@ use Validator;
  *
  * @package App\Http\Controllers\Api
  */
-class UserController extends BaseController
+class SantriController extends BaseController
 {
     const ITEM_PER_PAGE = 15;
 
@@ -45,17 +45,20 @@ class UserController extends BaseController
         $role = Arr::get($searchParams, 'role', '');
         $keyword = Arr::get($searchParams, 'keyword', '');
         $norole = 'students';
-        if (empty($role)) {
+        if (!empty($norole)) {
             $userQuery->whereHas('roles', function($q) use ($norole) { 
-                $q->where('name', '!=', $norole);
+                $q->where('name', $norole);
              });
         }
         if (!empty($role)) {
-            $userQuery->whereHas('roles', function($q) use ($role) { $q->where('name', $role); });
+            $userQuery->where(function ($query) use ($role) {
+                $query->where('sekolah_sekarang', 'LIKE', $role);
+            });
         }
+        
         if (!empty($keyword)) {
-            $userQuery->where('name', 'LIKE', '%' . $keyword . '%');
-            $userQuery->where('email', 'LIKE', '%' . $keyword . '%');
+            $userQuery->where('nama_belakang', 'LIKE', '%' . $keyword . '%');
+            $userQuery->orWhere('no_pendaftaran', 'LIKE', '%' . $keyword . '%');
         }
 
         
@@ -64,7 +67,6 @@ class UserController extends BaseController
     }
 
     
-
     /**
      * Store a newly created resource in storage.
      *
