@@ -11,6 +11,7 @@ Vue.use(Router);
 
 /* Layout */
 import Layout from '@/layout';
+import Layout2 from '@/layout2';
 
 /* Router for modules */
 import santriRoutes from './modules/santri';
@@ -50,8 +51,14 @@ import permissionRoutes from './modules/permission';
 export const constantRoutes = [
   {
     path: '/register',
-    component: () => import('@/views/register/index'),
+    component: Layout2,
     hidden: true,
+    children: [
+      {
+        path: '/register',
+        component: () => import('@/views/register/index'),
+      },
+    ],
   },
   {
     path: '/redirect',
