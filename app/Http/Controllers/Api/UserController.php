@@ -147,6 +147,7 @@ class UserController extends BaseController
 
             $user->name = $request->get('name');
             $user->email = $email;
+            $user->password = Hash::make($request->get('password'));
             $user->save();
             return new UserResource($user);
         }
@@ -231,6 +232,8 @@ class UserController extends BaseController
     {
         return [
             'name' => 'required',
+            'password' => 'required',
+            'confirmPassword' => 'required|same:password',
             'email' => $isNew ? 'required|email|unique:users' : 'required|email',
             'roles' => [
                 'required',

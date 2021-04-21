@@ -20,10 +20,10 @@
             </div>
             <p>
               Lorem ipsum represents a long-held tradition for designers,
-              typographers and the like. Some people hate it and argue for
-              its demise, but others ignore the hate as they create awesome
-              tools to help create filler text for everyone from bacon lovers
-              to Charlie Sheen fans.
+              typographers and the like. Some people hate it and argue for its
+              demise, but others ignore the hate as they create awesome tools to
+              help create filler text for everyone from bacon lovers to Charlie
+              Sheen fans.
             </p>
             <ul class="list-inline">
               <li>
@@ -38,8 +38,7 @@
               </li>
               <li class="pull-right">
                 <a href="#" class="link-black text-sm">
-                  <svg-icon icon-class="comment" />Comments
-                  (5)
+                  <svg-icon icon-class="comment" />Comments (5)
                 </a>
               </li>
             </ul>
@@ -62,15 +61,13 @@
             </div>
             <p>
               Lorem ipsum represents a long-held tradition for designers,
-              typographers and the like. Some people hate it and argue for
-              its demise, but others ignore the hate as they create awesome
-              tools to help create filler text for everyone from bacon lovers
-              to Charlie Sheen fans.
+              typographers and the like. Some people hate it and argue for its
+              demise, but others ignore the hate as they create awesome tools to
+              help create filler text for everyone from bacon lovers to Charlie
+              Sheen fans.
             </p>
             <el-input placeholder="Response">
-              <el-button slot="append">
-                Send
-              </el-button>
+              <el-button slot="append"> Send </el-button>
             </el-input>
           </div>
           <div class="post">
@@ -108,8 +105,7 @@
               </li>
               <li class="pull-right">
                 <a href="#" class="link-black text-sm">
-                  <svg-icon icon-class="comment" />Comments
-                  (5)
+                  <svg-icon icon-class="comment" />Comments (5)
                 </a>
               </li>
             </ul>
@@ -155,8 +151,21 @@
         <el-form-item label="Email">
           <el-input v-model="user.email" :disabled="user.role === 'admin'" />
         </el-form-item>
+        <el-form-item :label="$t('user.password')" prop="password">
+          <el-input v-model="user.password" show-password :disabled="user.role === 'admin'" />
+        </el-form-item>
+        <el-form-item
+          :label="$t('user.confirmPassword')"
+          prop="confirmPassword"
+        >
+          <el-input v-model="user.confirmPassword" :disabled="user.role === 'admin'" show-password />
+        </el-form-item>
         <el-form-item>
-          <el-button type="primary" :disabled="user.role === 'admin'" @click="onSubmit">
+          <el-button
+            type="primary"
+            :disabled="user.role === 'admin'"
+            @click="onSubmit"
+          >
             Update
           </el-button>
         </el-form-item>
@@ -177,6 +186,8 @@ export default {
         return {
           name: '',
           email: '',
+          password: '',
+          confirmPassword: '',
           avatar: '',
           roles: [],
         };
@@ -203,7 +214,7 @@ export default {
       this.updating = true;
       userResource
         .update(this.user.id, this.user)
-        .then(response => {
+        .then((response) => {
           this.updating = false;
           this.$message({
             message: 'User information has been updated successfully',
@@ -211,7 +222,7 @@ export default {
             duration: 5 * 1000,
           });
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
           this.updating = false;
         });
@@ -223,7 +234,8 @@ export default {
 <style lang="scss" scoped>
 .user-activity {
   .user-block {
-    .username, .description {
+    .username,
+    .description {
       display: block;
       margin-left: 50px;
       padding: 2px 0;
@@ -270,7 +282,8 @@ export default {
       font-size: 13px;
     }
     .link-black {
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         color: #999;
       }
     }
@@ -287,7 +300,7 @@ export default {
     background-color: #99a9bf;
   }
 
-  .el-carousel__item:nth-child(2n+1) {
+  .el-carousel__item:nth-child(2n + 1) {
     background-color: #d3dce6;
   }
 }

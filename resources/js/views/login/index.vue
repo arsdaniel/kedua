@@ -198,7 +198,7 @@ $light_gray: rgb(14, 13, 13);
   background-color: $bg;
   .login-form {
     border: 1px solid #b2b9c7;
-    width: 350px;
+    width: 400px;
     margin: 150px auto;
     padding: 20px 30px;
     border-radius: 10px;
