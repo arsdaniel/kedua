@@ -4,6 +4,7 @@ import Vue from 'vue';
 import Cookies from 'js-cookie';
 import ElementUI from 'element-ui';
 import App from './views/App';
+import ArticleList from './views/articles/List.vue';
 import store from './store';
 import router from '@/router';
 import i18n from './lang'; // Internationalization
@@ -29,5 +30,8 @@ new Vue({
   router,
   store,
   i18n,
+  components: {
+    ArticleList,
+  },
   render: h => h(App),
 });

@@ -20,14 +20,8 @@ const santriRoutes = {
     {
       path: 'listsantri',
       component: () => import('@/views/santri/index'),
-      name: 'listsantri',
+      name: 'List Santri',
       meta: { title: 'listsantri', icon: 'list', noCache: true },
-    },
-    {
-      path: 'tab',
-      component: () => import('@/views/tab'),
-      name: 'Tab',
-      meta: { title: 'tab', icon: 'tab' },
     },
   ],
 };

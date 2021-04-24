@@ -20,7 +20,7 @@ final class Acl
 {
     const ROLE_ADMIN = 'admin';
     const ROLE_TEACHER = 'teacher';
-    const ROLE_EDITOR = 'editor';
+    const ROLE_EDITOR = 'tu';
     const ROLE_USER = 'user';
     const ROLE_STUDENTS = 'students';
 

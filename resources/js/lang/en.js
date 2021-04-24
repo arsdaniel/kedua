@@ -48,6 +48,7 @@ export default {
     tab: 'Tab',
     form: 'Form',
     addSantri: 'Add Santri',
+    listsantri: 'List Santri',
     createArticle: 'Create Article',
     editArticle: 'Edit Article',
     articleList: 'Articles',

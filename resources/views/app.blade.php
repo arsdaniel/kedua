@@ -13,7 +13,7 @@
     <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
   </head>
   <body>
-    <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+    <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="{{ asset('images/ie8-panel/warning_bar_0000_us.jpg')}}" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <div class="preloader">
       <div class="loader">
         <div class="ball"></div>
@@ -35,7 +35,7 @@
                     <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                     <!--RD Navbar Brand-->
                     <div class="rd-navbar-brand">
-                      <!--Brand--><a class="brand" href="index.html"><img class="brand-logo-dark" src="images/logo-default-363x100.png" alt="" width="181" height="50"/><img class="brand-logo-light" src="{{ asset('depan/images/logo-inverse-363x100.png')}}" alt="" width="181" height="50"/></a>
+                      <!--Brand--><a class="brand" href="index.html"><img class="brand-logo-dark" src="{{ asset('depan/images/logo-default-363x100.png') }}" alt="" width="181" height="50"/><img class="brand-logo-light" src="{{ asset('depan/images/logo-inverse-363x100.png')}}" alt="" width="181" height="50"/></a>
                     </div>
                   </div>
                   <div class="rd-navbar-nav-wrap">
@@ -56,7 +56,7 @@
           </div>
         </header>
         <!--Swiper-->
-        <section class="section swiper-container swiper-slider bg-primary" data-autoplay="3500" data-loop="false" data-simulate-touch="false" data-effect="circle-bg" data-speed="750">
+        <section class="section swiper-container swiper-slider bg-primary" data-autoplay="3500" data-loop="false" data-simulate-touch="false" data-effect="" data-speed="750">
           <div class="swiper-bg-text">Food</div>
           <div class="swiper-wrapper">
             <div class="swiper-slide" data-circle-cx=".855" data-circle-cy=".5" data-circle-r=".39">
@@ -69,7 +69,7 @@
                       <p class="big" data-swiper-anime='{"animation":"swiperContentRide","duration":1100,"delay":1100}'>Plate offers quick delivery of organic &amp; healthy food all over the state.</p>
                       <p class="postitle" data-swiper-anime='{"animation":"swiperContentRide","duration":1200,"delay":1200}'>Why Choose Plate</p>
                     </div>
-                    <div class="box-round-wrap"><img src="images/slider-01-671x671.png" alt="" width="671" height="335" data-swiper-anime='{"animation":"swiperContentFade","duration":1000,"delay":1000}'/>
+                    <div class=""><img src="{{ asset('depan/images/7745_foto_utama.jpg')}}" alt="" width="671" height="335" data-swiper-anime='{"animation":"swiperContentFade","duration":1000,"delay":1000}'/>
                     </div>
                   </div>
                 </div>
@@ -85,7 +85,7 @@
                       <p class="big" data-swiper-anime='{"animation":"swiperContentRide","duration":1100,"delay":1100}'>Our food delivery service is available in more than 200 cities for your comfort.</p>
                       <p class="postitle" data-swiper-anime='{"animation":"swiperContentRide","duration":1200,"delay":1200}'>Nationwide Delivery</p>
                     </div>
-                    <div class="box-round-wrap"><img src="images/slider-02-671x671.png" alt="" width="671" height="335" data-swiper-anime='{"animation":"swiperContentFade","duration":1000,"delay":1000}'/>
+                    <div class="box-round-wrap"><img src="{{ asset('depan/images/slider-02-671x671.png')}}" alt="" width="671" height="335" data-swiper-anime='{"animation":"swiperContentFade","duration":1000,"delay":1000}'/>
                     </div>
                   </div>
                 </div>
@@ -101,7 +101,7 @@
                       <p class="big" data-swiper-anime='{"animation":"swiperContentRide","duration":1100,"delay":1100}'>Plate regularly updates the menus to make sure our customers eat the best and the tastiest food.</p>
                       <p class="postitle" data-swiper-anime='{"animation":"swiperContentRide","duration":1200,"delay":1200}'>Organic Ingredients</p>
                     </div>
-                    <div class="box-round-wrap"><img src="images/slider-03-671x671.png" alt="" width="671" height="335" data-swiper-anime='{"animation":"swiperContentFade","duration":1000,"delay":1000}'/>
+                    <div class="box-round-wrap"><img src="{{ asset('depan/images/slider-03-671x671.png')}}" alt="" width="671" height="335" data-swiper-anime='{"animation":"swiperContentFade","duration":1000,"delay":1000}'/>
                     </div>
                   </div>
                 </div>
@@ -117,7 +117,7 @@
                       <p class="big" data-swiper-anime='{"animation":"swiperContentRide","duration":1100,"delay":1100}'>Our clients’ reviews are the best way to learn more about our food delivery service.</p>
                       <p class="postitle" data-swiper-anime='{"animation":"swiperContentRide","duration":1200,"delay":1200}'>Reviews &amp; Testimonials</p>
                     </div>
-                    <div class="box-round-wrap"><img src="images/slider-04-671x671.png" alt="" width="671" height="335" data-swiper-anime='{"animation":"swiperContentFade","duration":1000,"delay":1000}'/>
+                    <div class="box-round-wrap"><img src="{{ asset('images/slider-04-671x671.png')}}" alt="" width="671" height="335" data-swiper-anime='{"animation":"swiperContentFade","duration":1000,"delay":1000}'/>
                     </div>
                   </div>
                 </div>
@@ -133,7 +133,7 @@
         <div class="container">
           <div class="row row-50 flex-wrap-md-reverse flex-lg-wrap align-items-lg-center">
             <div class="col-xl-6 col-lg-6">
-              <div class="box-custom-2"><img src="images/shutter-home-01-455x685.png" alt="" width="455" height="342"/>
+              <div class="box-custom-2"><img src="{{ asset('depan/images/shutter-home-01-455x685.png')}}" alt="" width="455" height="342"/>
                 <div class="box-custom-2-smal">
                   <p class="box-custom-2-name">Jason Fox</p>
                   <p class="box-custom-2-position">Head Chef</p>
@@ -307,11 +307,11 @@
           <div class="row row-40 align-items-center">
             <div class="col-lg-6">
               <div class="owl-pagination-custom" id="owl-pagination-custom">
-                <div class="data-dots-custom" data-owl-item="0"><img src="images/shutter-testimonials-01-179x179.png" alt="" width="179" height="89"/>
+                <div class="data-dots-custom" data-owl-item="0"><img src="{{ asset('depan/images/shutter-testimonials-01-179x179.png')}}" alt="" width="179" height="89"/>
                 </div>
-                <div class="data-dots-custom" data-owl-item="1"><img src="images/shutter-testimonials-02-306x306.png" alt="" width="306" height="153"/>
+                <div class="data-dots-custom" data-owl-item="1"><img src="{{ asset('depan/images/shutter-testimonials-02-306x306.png')}}" alt="" width="306" height="153"/>
                 </div>
-                <div class="data-dots-custom" data-owl-item="2"><img src="images/testimonials-03-179x179.png" alt="" width="179" height="89"/>
+                <div class="data-dots-custom" data-owl-item="2"><img src="{{ asset('depan/images/testimonials-03-179x179.png')}}  " alt="" width="179" height="89"/>
                 </div>
               </div>
             </div>
@@ -404,6 +404,8 @@
     <div class="snackbars" id="form-output-global"></div>
     <script src="{{ asset('depan/js/core.min.js')}}"></script>
     <script src="{{ asset('depan/js/script.js')}}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
+
     <!--coded by kraken-->
   </body>
 </html>
