@@ -48,6 +48,7 @@ Route::namespace('Api')->group(function() {
     });
 });
 
+
 // Fake APIs
 Route::get('/table/list', function () {
     $rowsNumber = mt_rand(20, 30);

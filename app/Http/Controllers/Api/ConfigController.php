@@ -19,4 +19,6 @@ class ConfigController extends Controller
             'data' => $data,
         ]);
     }
+
+   
 }
