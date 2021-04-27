@@ -59,7 +59,7 @@
   #mega-menu-holder>ul> li> a:before {display: none;}
   #mega-menu-holder>ul> li> a {color: #555555;}
   #mega-menu-holder>ul> li.active > a, #mega-menu-holder>ul> li:hover > a,
-  #mega-menu-holder>ul> li.active > .sub-toggle, #mega-menu-holder>ul> li:hover > .sub-toggle {color: #001a57;}
+  #mega-menu-holder>ul> li.active > .sub-toggle, #mega-menu-holder>ul> li:hover > .sub-toggle {color: #1cb349;}
   .about-compnay img {display: none;}
   .service-style-one .contact-text {padding-top: 15px;}
   .service-style-one .contact-text h4 {font-size: 22px;}
@@ -76,7 +76,7 @@
   .header-two .theme-menu-wrapper .bg-wrapper {padding-left: 0;}
   .header-two .theme-menu-wrapper .right-widget ul li {line-height: 70px;}
   .header-two .theme-menu-wrapper .right-widget .cart-icon a span {top:20px;}
-  .header-two .collapse-button .icon-bar {background: #001a57;}
+  .header-two .collapse-button .icon-bar {background: #1cb349;}
   .header-two .menu-collapser {margin: 22px 0;}
   .header-two #mega-menu-holder>ul> li> a {padding-top: 0;padding-bottom: 0;}
   .header-two #mega-menu-holder li .sub-toggle {line-height: 40px;}

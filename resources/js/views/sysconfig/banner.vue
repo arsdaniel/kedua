@@ -30,7 +30,7 @@
       <el-table-column width="120px" align="center" label="Status">
         <template slot-scope="scope">
           <span v-if="scope.row.status ===1"> Active </span>
-          <span v-if="scope.row.status ===1"> Inactive </span>
+          <span v-else> Inactive </span>
         </template>
       </el-table-column>
 
