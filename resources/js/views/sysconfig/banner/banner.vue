@@ -9,7 +9,7 @@
 
       <el-table-column min-width="300px" label="Title">
         <template slot-scope="{row}">
-          <router-link :to="'/administrator/articles/edit/'+row.id" class="link-type">
+          <router-link :to="'/config/banner/edit/'+row.id" class="link-type">
             <span>{{ row.title }}</span>
           </router-link>
         </template>
@@ -17,7 +17,7 @@
 
       <el-table-column width="120px" align="center" label="Image">
         <template slot-scope="scope">
-          <span>{{ scope.row.image }}</span>
+          <img :src="scope.row.image" min-width="70" height="70">
         </template>
       </el-table-column>
 
@@ -36,7 +36,7 @@
 
       <el-table-column align="center" label="Actions" width="120">
         <template slot-scope="scope">
-          <router-link :to="'/administrator/articles/edit/'+scope.row.id">
+          <router-link :to="'/config/banner/edit/'+scope.row.id">
             <el-button type="primary" size="small" icon="el-icon-edit">
               Edit
             </el-button>

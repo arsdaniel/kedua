@@ -18,7 +18,7 @@ use \App\Laravue\Acl;
 |
 */
 
-Route::namespace('Api')->group(function() {
+Route::namespace('Api')->group(function () {
     Route::post('auth/login', 'AuthController@login');
     Route::group(['middleware' => 'auth:sanctum'], function () {
         // Auth routes
@@ -31,10 +31,12 @@ Route::namespace('Api')->group(function() {
 
         //config Routes
 
-        Route::get('config/show', 'ConfigController@index')->middleware('permission:' . Acl::PERMISSION_PERMISSION_MANAGE);
-        Route::get('config/banner', 'BannerController@getBanner');
+        Route::get('/config/show', 'ConfigController@index')->middleware('permission:' . Acl::PERMISSION_PERMISSION_MANAGE);
+        Route::get('/banner', 'BannerController@getBanner');
+        Route::get('/banner/{banner}', 'BannerController@show');
+        Route::put('/banner/{banner}', 'BannerController@update');
 
-    
+
         // Api resource routes
         Route::apiResource('roles', 'RoleController')->middleware('permission:' . Acl::PERMISSION_PERMISSION_MANAGE);
         Route::apiResource('users', 'UserController')->middleware('permission:' . Acl::PERMISSION_USER_MANAGE);
@@ -44,12 +46,11 @@ Route::namespace('Api')->group(function() {
         // Custom routes
         Route::put('users/{user}', 'UserController@update');
         Route::get('users/{user}/permissions', 'UserController@permissions')->middleware('permission:' . Acl::PERMISSION_PERMISSION_MANAGE);
-        Route::put('users/{user}/permissions', 'UserController@updatePermissions')->middleware('permission:' .Acl::PERMISSION_PERMISSION_MANAGE);
+        Route::put('users/{user}/permissions', 'UserController@updatePermissions')->middleware('permission:' . Acl::PERMISSION_PERMISSION_MANAGE);
         Route::get('roles/{role}/permissions', 'RoleController@permissions')->middleware('permission:' . Acl::PERMISSION_PERMISSION_MANAGE);
     });
 });
 
-Route::put('/config/banner/{banner}', 'api\BannerController@update');
 
 // Fake APIs
 Route::get('/table/list', function () {
