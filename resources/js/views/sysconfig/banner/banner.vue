@@ -29,8 +29,7 @@
 
       <el-table-column width="120px" align="center" label="Status">
         <template slot-scope="scope">
-          <span v-if="scope.row.status ===1"> Active </span>
-          <span v-else> Inactive </span>
+          <span>{{ scope.row.status }}</span>
         </template>
       </el-table-column>
 
@@ -56,6 +55,7 @@ export default {
   name: 'Banner',
   data() {
     return {
+      image: '',
       list: null,
       total: 0,
       listLoading: true,

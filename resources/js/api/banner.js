@@ -19,6 +19,6 @@ export function updateArticle(data) {
   return request({
     url: '/banner/update',
     method: 'post',
-    data,
+    data: data,
   });
 }

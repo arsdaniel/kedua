@@ -28,25 +28,34 @@ class BannerController extends Controller
         return new BannerResource($banner);
     }
 
-    public function update(Request $request, Banner $banner)
+    public function update(Request $request, $id)
     {
+        $banner = Banner::find($id);
+        if ($request->hasFile('image')) {
+            $imageName = $request->image->getClientOriginalName();
+            $image = $request->image;
+            $image->move('uploads/images/banner', $imageName);
+            $banner->image = '/uploads/images/banner/'.$imageName;
+            $banner->title = $request->title;
+            $banner->description = $request->description;
+            $banner->status = $request->status;
+            $banner->save();
+        } else {
+            $banner->title = $request->title;
+            $banner->description = $request->description;
+            $banner->status = $request->status;
+            $banner->save();
+        }
+    }
 
-        // $image = $request->get('image');
-        // $imageName = $image->getClientOriginalName();
-        // $imageName = time() . '_' . $imageName;
-
-        // $image->move(public_path('/images'), $imageName);
-
-        // //$banner->image = '/images' . $imageName;
-        $banner->title = $request->get('title');
-        $banner->description = $request->get('description');
+    public function store(Request $request)
+    {
+        $banner = new Banner();
+        $imageName = time() . '.' . $request->image->extension();
+        $banner->image = $imageName;
+        $banner->title = $request->title;
+        $banner->description = $request->description;
         $banner->save();
     }
 
-    private function getValidationRules($isNew = true)
-    {
-        return [
-            'image' => $isNew ? 'required' : 'required',
-        ];
-    }
 }
