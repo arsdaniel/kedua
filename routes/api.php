@@ -34,7 +34,9 @@ Route::namespace('Api')->group(function () {
         Route::get('/config/show', 'ConfigController@index')->middleware('permission:' . Acl::PERMISSION_PERMISSION_MANAGE);
         Route::get('/banner', 'BannerController@getBanner');
         Route::get('/banner/{banner}', 'BannerController@show');
-        Route::put('/banner/{banner}', 'BannerController@update');
+        Route::post('/banner', 'BannerController@store');
+        Route::post('/banner/{id}', 'BannerController@update');
+        Route::get('/banner', 'BannerController@getBanner');
 
 
         // Api resource routes
@@ -50,6 +52,8 @@ Route::namespace('Api')->group(function () {
         Route::get('roles/{role}/permissions', 'RoleController@permissions')->middleware('permission:' . Acl::PERMISSION_PERMISSION_MANAGE);
     });
 });
+
+
 
 
 // Fake APIs
