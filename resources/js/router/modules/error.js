@@ -5,6 +5,7 @@ const errorRoutes = {
   path: '/error',
   component: Layout,
   redirect: 'noredirect',
+  hidden: true,
   name: 'ErrorPages',
   meta: {
     title: 'errorPages',

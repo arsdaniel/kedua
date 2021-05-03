@@ -5,6 +5,7 @@ const permissionRoutes = {
   component: Layout,
   redirect: '/permission/index',
   alwaysShow: true, // will always show the root menu
+  hidden: true,
   meta: {
     title: 'permission',
     icon: 'lock',

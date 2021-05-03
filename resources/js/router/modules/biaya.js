@@ -1,14 +1,14 @@
 import Layout from '@/layout';
 
-const configRoutes = {
-  path: '/config',
+const biayaRoutes = {
+  path: '/biaya',
   component: Layout,
-  redirect: '/config',
-  name: 'configuration',
+  redirect: '/biaya',
+  name: 'biaya',
   meta: {
-    title: 'configuration',
-    icon: 'admin',
-    permissions: ['manage permission'],
+    title: 'biaya',
+    icon: 'dollar',
+    permissions: ['view menu element ui'],
   },
   children: [
     {
@@ -33,4 +33,4 @@ const configRoutes = {
   ],
 };
 
-export default configRoutes;
+export default biayaRoutes;

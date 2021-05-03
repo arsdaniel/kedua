@@ -5,6 +5,7 @@ const chartsRoutes = {
   path: '/charts',
   component: Layout,
   redirect: 'noredirect',
+  hidden: true,
   name: 'Charts',
   meta: {
     title: 'charts',
