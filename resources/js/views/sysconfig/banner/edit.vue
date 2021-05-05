@@ -10,17 +10,19 @@
         <el-input v-model="form.title" disabled />
       </el-form-item>
       <el-form-item prop="image" style="margin-bottom: 30px" label="Image">
-        <img :src="previewImage" width="100" class="avatar" />
-        <el-button size="small" type="primary" @click="chooseFiles()"
-          >Click to upload</el-button
-        >
+        <img :src="previewImage" width="100" class="avatar">
+        <el-button
+          size="small"
+          type="primary"
+          @click="chooseFiles()"
+        >Click to upload</el-button>
         <input
           id="fileUpload"
           type="file"
           name="image"
-          @change="upload"
           hidden
-        />
+          @change="upload"
+        >
       </el-form-item>
       <el-form-item label="Description">
         <el-input v-model="form.description" />
@@ -64,7 +66,7 @@ export default {
         status: '',
         description: '',
       },
-      status: ['aktive', 'inActive'],
+      status: ['Active', 'inActive'],
     };
   },
   created() {
@@ -89,14 +91,14 @@ export default {
         });
     },
     upload(e) {
-      let files = e.target.files[0];
+      const files = e.target.files[0];
       if (files) {
         this.previewImage = URL.createObjectURL(files);
         this.image = files;
       }
     },
     onSubmit() {
-      let formData = new FormData();
+      const formData = new FormData();
       formData.append('image', this.image);
       formData.append('title', this.form.title);
       formData.append('description', this.form.description);
