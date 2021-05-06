@@ -12,23 +12,17 @@ const biayaRoutes = {
   },
   children: [
     {
-      path: 'banner',
-      name: 'banner',
-      component: () => import('@/views/sysconfig/banner/banner'),
-      meta: { title: 'banner', icon: 'el-icon-plus' },
+      path: 'biayaPendaftaran',
+      name: 'biayaPendaftaran',
+      component: () => import('@/views/biayapendaftaran/biayapendaftaran'),
+      meta: { title: 'biayaPendaftaran', icon: 'el-icon-plus' },
     },
     {
-      path: 'banner/edit/:id',
-      component: () => import('@/views/sysconfig/banner/Edit'),
-      name: 'EditBanner',
-      meta: { title: 'editBanner', noCache: true, permissions: ['manage article'] },
+      path: 'biayaPendaftaran/edit/:id',
+      component: () => import('@/views/biayapendaftaran/Edit'),
+      name: 'EditBiayapendaftaran',
+      meta: { title: 'editBiayapendaftaran', noCache: true, permissions: ['manage article'] },
       hidden: true,
-    },
-    {
-      path: 'listsantri',
-      component: () => import('@/views/santri/index'),
-      name: 'List Santri',
-      meta: { title: 'listsantri', icon: 'list', noCache: true },
     },
   ],
 };

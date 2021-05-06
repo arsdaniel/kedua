@@ -54,6 +54,7 @@ Route::namespace('Api')->group(function () {
 });
 
 
+Route::get('/biayaPendaftaran', 'api\BiayaPendaftaranController@getBiaya');
 
 
 // Fake APIs
