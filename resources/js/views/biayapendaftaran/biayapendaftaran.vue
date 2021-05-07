@@ -1,5 +1,11 @@
 <template>
   <div class="app-container">
+    <div class="filter-container">
+      <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-plus" @click="handleCreate">
+        {{ $t('table.add') }}
+      </el-button>
+    </div>
+
     <el-table v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 100%">
       <el-table-column align="center" label="ID" width="80">
         <template slot-scope="scope">
@@ -29,7 +35,7 @@
 
       <el-table-column width="120px" align="center" label="Harga">
         <template slot-scope="scope">
-          <span>{{ scope.row.sekolah }}</span>
+          <span>{{ scope.row.harga }}</span>
         </template>
       </el-table-column>
 
@@ -44,25 +50,19 @@
       </el-table-column>
     </el-table>
 
-    <el-dialog :title="'Create new user'" :visible.sync="dialogFormVisible">
-      <div v-loading="userCreating" class="form-container">
-        <el-form ref="userForm" :rules="rules" :model="newUser" label-position="left" label-width="150px" style="max-width: 500px;">
-          <el-form-item :label="$t('user.role')" prop="role">
-            <el-select v-model="newUser.role" class="filter-item" placeholder="Please select role">
-              <el-option v-for="item in nonAdminRoles" :key="item" :label="item | uppercaseFirst" :value="item" />
-            </el-select>
-          </el-form-item>
+    <el-dialog :title="'Tambah Biaya Baru'" :visible.sync="dialogFormVisible">
+      <div v-loading="biayaCreating" class="form-container">
+        <el-form ref="biayaForm" :model="newBiaya" label-position="left" label-width="150px" style="max-width: 500px;">
           <el-form-item :label="$t('user.name')" prop="name">
-            <el-input v-model="newUser.name" />
+            <el-input v-model="newBiaya.nama_biaya" />
           </el-form-item>
           <el-form-item :label="$t('user.email')" prop="email">
-            <el-input v-model="newUser.email" />
+            <el-input v-model="newBiaya.tahun_ajaran" />
           </el-form-item>
-          <el-form-item :label="$t('user.password')" prop="password">
-            <el-input v-model="newUser.password" show-password />
-          </el-form-item>
-          <el-form-item :label="$t('user.confirmPassword')" prop="confirmPassword">
-            <el-input v-model="newUser.confirmPassword" show-password />
+          <el-form-item :label="$t('user.email')" prop="email">
+            <el-input v-model="newBiaya.sekolah" />
+          </el-form-item><el-form-item :label="$t('user.email')" prop="email">
+            <el-input v-model="newBiaya.harga" />
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
@@ -81,7 +81,7 @@
 
 <script>
 import Resource from '@/api/resource';
-const articleResource = new Resource('biayaPendaftaran');
+const biayaResource = new Resource('biayaPendaftaran');
 
 export default {
   name: 'BiayaPendaftaran',
@@ -91,22 +91,75 @@ export default {
       list: null,
       total: 0,
       listLoading: true,
+      biayaCreating: false,
+      isEdit: false,
       listQuery: {
         page: 1,
         limit: 20,
       },
+      newBiaya: {},
+      dialogFormVisible: false,
+      dialogPermissionVisible: false,
+      dialogPermissionLoading: false,
     };
   },
   created() {
-    this.getList();
+    if (this.isEdit) {
+      this.dialogFormVisible = true;
+    } else {
+      this.getList();
+    }
   },
   methods: {
     async getList() {
       this.listLoading = true;
-      const { data } = await articleResource.list(this.listQuery);
+      const { data } = await biayaResource.list(this.listQuery);
       this.list = data.items;
       this.total = data.total;
       this.listLoading = false;
+    },
+    handleCreate() {
+      this.resetNewBiaya();
+      this.dialogFormVisible = true;
+      this.$nextTick(() => {
+        this.$refs['biayaForm'].clearValidate();
+      });
+    },
+    createUser() {
+      this.$refs['biayaForm'].validate((valid) => {
+        if (valid) {
+          this.biayaCreating = true;
+          biayaResource
+            .store(this.newBiaya)
+            .then(response => {
+              this.$message({
+                message: 'Penambahan ' + this.newBiaya.nama_biaya + ' has been created successfully.',
+                type: 'success',
+                duration: 5 * 1000,
+              });
+              this.resetNewBiaya();
+              this.dialogFormVisible = false;
+              this.getList();
+            })
+            .catch(error => {
+              console.log(error);
+            })
+            .finally(() => {
+              this.biayaCreating = false;
+            });
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
+    },
+    resetNewBiaya() {
+      this.newUser = {
+        nama_biaya: '',
+        tahun_ajaran: '',
+        sekolah: '',
+        harga: '',
+      };
     },
   },
 };

@@ -19,4 +19,15 @@ class BiayaPendaftaranController extends Controller
 
         return response()->json(new JsonResponse(['items' => $data]));
     }
+
+    public function store(request $request)
+    {
+        $biayaPendaftaran = new BiayaPendaftaran();
+        $biayaPendaftaran->nama_biaya = $request->nama_biaya;
+        $biayaPendaftaran->tahun_ajaran = $request->tahun_ajaran;
+        $biayaPendaftaran->sekolah = $request->sekolah;
+        $biayaPendaftaran->harga = $request->harga;
+        $biayaPendaftaran->save();
+
+    }
 }
