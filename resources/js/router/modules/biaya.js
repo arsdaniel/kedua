@@ -17,13 +17,6 @@ const biayaRoutes = {
       component: () => import('@/views/biayapendaftaran/biayapendaftaran'),
       meta: { title: 'biayaPendaftaran', icon: 'el-icon-plus' },
     },
-    {
-      path: 'biayaPendaftaran/edit/:id',
-      component: () => import('@/views/biayapendaftaran/Edit'),
-      name: 'EditBiayapendaftaran',
-      meta: { title: 'editBiayapendaftaran', noCache: true, permissions: ['manage article'] },
-      hidden: true,
-    },
   ],
 };
 

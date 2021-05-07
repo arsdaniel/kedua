@@ -73,6 +73,7 @@
       <div v-loading="biayaCreating" class="form-container">
         <el-form
           ref="biayaForm"
+          :rules="rules"
           :model="newBiaya"
           label-position="left"
           label-width="150px"
@@ -140,6 +141,12 @@ export default {
         harga: '',
       },
       dialogFormVisible: false,
+      rules: {
+        nama_biaya: [{ required: true, message: 'Name is required', trigger: 'blur' }],
+        tahun_ajaran: [{ required: true, message: 'Tahun Ajaran is required', trigger: 'blur' }],
+        sekolah: [{ required: true, message: 'Sekolah is required', trigger: 'blur' }],
+        harga: [{ required: true, message: 'Harga is required', trigger: 'blur' }],
+      },
     };
   },
   created() {
@@ -236,6 +243,9 @@ export default {
       this.fetchData(id);
       this.isEdit = true;
       this.dialogFormVisible = true;
+      this.$nextTick(() => {
+        this.$refs['biayaForm'].clearValidate();
+      });
     },
     resetNewBiaya() {
       this.newBiaya = {
@@ -257,5 +267,11 @@ export default {
   position: absolute;
   right: 15px;
   top: 10px;
+}
+
+@media screen and (max-width:768px) {
+    .app-container {
+        overflow: auto;
+    }
 }
 </style>

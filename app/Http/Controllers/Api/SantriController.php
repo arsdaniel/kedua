@@ -10,7 +10,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Resources\PermissionResource;
-use App\Http\Resources\UserResource;
+use App\Http\Resources\SantriResource;
 use App\Laravue\JsonResponse;
 use App\Laravue\Models\Permission;
 use App\Laravue\Models\Role;
@@ -63,7 +63,7 @@ class SantriController extends BaseController
 
         
 
-        return UserResource::collection($userQuery->paginate($limit));
+        return SantriResource::collection($userQuery->paginate($limit));
     }
 
     
@@ -98,7 +98,7 @@ class SantriController extends BaseController
             $role = Role::findByName($params['role']);
             $user->syncRoles($role);
 
-            return new UserResource($user);
+            return new SantriResource($user);
         }
     }
 
@@ -106,11 +106,11 @@ class SantriController extends BaseController
      * Display the specified resource.
      *
      * @param  User $user
-     * @return UserResource|\Illuminate\Http\JsonResponse
+     * @return SantriResource|\Illuminate\Http\JsonResponse
      */
     public function show(User $user)
     {
-        return new UserResource($user);
+        return new SantriResource($user);
     }
 
     /**
@@ -118,7 +118,7 @@ class SantriController extends BaseController
      *
      * @param Request $request
      * @param User    $user
-     * @return UserResource|\Illuminate\Http\JsonResponse
+     * @return SantriResource|\Illuminate\Http\JsonResponse
      */
     public function update(Request $request, User $user)
     {
@@ -150,7 +150,7 @@ class SantriController extends BaseController
             $user->name = $request->get('name');
             $user->email = $email;
             $user->save();
-            return new UserResource($user);
+            return new SantriResource($user);
         }
     }
 
@@ -159,7 +159,7 @@ class SantriController extends BaseController
      *
      * @param Request $request
      * @param User    $user
-     * @return UserResource|\Illuminate\Http\JsonResponse
+     * @return SantriResource|\Illuminate\Http\JsonResponse
      */
     public function updatePermissions(Request $request, User $user)
     {
@@ -183,7 +183,7 @@ class SantriController extends BaseController
         $newPermissionIds = array_diff($permissionIds, $rolePermissionIds);
         $permissions = Permission::allowed()->whereIn('id', $newPermissionIds)->get();
         $user->syncPermissions($permissions);
-        return new UserResource($user);
+        return new SantriResource($user);
     }
 
     /**
