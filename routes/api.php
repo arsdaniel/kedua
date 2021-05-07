@@ -56,6 +56,8 @@ Route::namespace('Api')->group(function () {
 
 Route::get('/biayaPendaftaran', 'api\BiayaPendaftaranController@getBiaya');
 Route::post('/biayaPendaftaran', 'api\BiayaPendaftaranController@store');
+Route::get('/biayaPendaftaran/{biayaPendaftaran}', 'api\BiayaPendaftaranController@show');
+Route::post('/biayaPendaftaran/{biayaPendaftaran}', 'api\BiayaPendaftaranController@update');
 
 
 // Fake APIs

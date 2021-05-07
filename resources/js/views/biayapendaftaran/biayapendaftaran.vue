@@ -1,12 +1,25 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-plus" @click="handleCreate">
+      <el-button
+        class="filter-item"
+        style="margin-left: 10px"
+        type="primary"
+        icon="el-icon-plus"
+        @click="handleCreate"
+      >
         {{ $t('table.add') }}
       </el-button>
     </div>
 
-    <el-table v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 100%">
+    <el-table
+      v-loading="listLoading"
+      :data="list"
+      border
+      fit
+      highlight-current-row
+      style="width: 100%"
+    >
       <el-table-column align="center" label="ID" width="80">
         <template slot-scope="scope">
           <span>{{ scope.row.id }}</span>
@@ -14,8 +27,11 @@
       </el-table-column>
 
       <el-table-column min-width="300px" label="Nama Biaya">
-        <template slot-scope="{row}">
-          <router-link :to="'/biaya/biayaPendaftaran/edit/'+row.id" class="link-type">
+        <template slot-scope="{ row }">
+          <router-link
+            :to="'/biaya/biayaPendaftaran/edit/' + row.id"
+            class="link-type"
+          >
             <span>{{ row.nama_biaya }}</span>
           </router-link>
         </template>
@@ -41,27 +57,37 @@
 
       <el-table-column align="center" label="Actions" width="120">
         <template slot-scope="scope">
-          <router-link :to="'/biaya/biayaPendaftaran/edit/'+scope.row.id">
-            <el-button type="primary" size="small" icon="el-icon-edit">
-              Edit
-            </el-button>
-          </router-link>
+          <el-button
+            type="primary"
+            size="small"
+            icon="el-icon-edit"
+            @click="handleUpdate(scope.row.id)"
+          >
+            Edit
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
 
-    <el-dialog :title="'Tambah Biaya Baru'" :visible.sync="dialogFormVisible">
+    <el-dialog :title="'Biaya Pendaftaran'" :visible.sync="dialogFormVisible">
       <div v-loading="biayaCreating" class="form-container">
-        <el-form ref="biayaForm" :model="newBiaya" label-position="left" label-width="150px" style="max-width: 500px;">
-          <el-form-item :label="$t('user.name')" prop="name">
+        <el-form
+          ref="biayaForm"
+          :model="newBiaya"
+          label-position="left"
+          label-width="150px"
+          style="max-width: 500px"
+        >
+          <el-form-item :label="$t('biaya.nama_biaya')" prop="nama_biaya">
             <el-input v-model="newBiaya.nama_biaya" />
           </el-form-item>
-          <el-form-item :label="$t('user.email')" prop="email">
+          <el-form-item :label="$t('biaya.tahun_ajaran')" prop="tahun_ajaran">
             <el-input v-model="newBiaya.tahun_ajaran" />
           </el-form-item>
-          <el-form-item :label="$t('user.email')" prop="email">
+          <el-form-item :label="$t('biaya.sekolah')" prop="sekolah">
             <el-input v-model="newBiaya.sekolah" />
-          </el-form-item><el-form-item :label="$t('user.email')" prop="email">
+          </el-form-item>
+          <el-form-item :label="$t('biaya.harga')" prop="harga">
             <el-input v-model="newBiaya.harga" />
           </el-form-item>
         </el-form>
@@ -69,13 +95,23 @@
           <el-button @click="dialogFormVisible = false">
             {{ $t('table.cancel') }}
           </el-button>
-          <el-button type="primary" @click="createUser()">
+          <el-button
+            v-if="isEdit == false"
+            type="primary"
+            @click="createBiaya()"
+          >
             {{ $t('table.confirm') }}
+          </el-button>
+          <el-button
+            v-if="isEdit == true"
+            type="primary"
+            @click="updateBiaya()"
+          >
+            Ubah
           </el-button>
         </div>
       </div>
     </el-dialog>
-
   </div>
 </template>
 
@@ -97,18 +133,17 @@ export default {
         page: 1,
         limit: 20,
       },
-      newBiaya: {},
+      newBiaya: {
+        nama_biaya: '',
+        tahun_ajaran: '',
+        sekolah: '',
+        harga: '',
+      },
       dialogFormVisible: false,
-      dialogPermissionVisible: false,
-      dialogPermissionLoading: false,
     };
   },
   created() {
-    if (this.isEdit) {
-      this.dialogFormVisible = true;
-    } else {
-      this.getList();
-    }
+    this.getList();
   },
   methods: {
     async getList() {
@@ -125,15 +160,28 @@ export default {
         this.$refs['biayaForm'].clearValidate();
       });
     },
-    createUser() {
+    fetchData(id) {
+      biayaResource
+        .get(id)
+        .then((response) => {
+          this.newBiaya = response.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    createBiaya() {
       this.$refs['biayaForm'].validate((valid) => {
         if (valid) {
           this.biayaCreating = true;
           biayaResource
             .store(this.newBiaya)
-            .then(response => {
+            .then((response) => {
               this.$message({
-                message: 'Penambahan ' + this.newBiaya.nama_biaya + ' has been created successfully.',
+                message:
+                  'Penambahan ' +
+                  this.newBiaya.nama_biaya +
+                  ' has been created successfully.',
                 type: 'success',
                 duration: 5 * 1000,
               });
@@ -141,7 +189,7 @@ export default {
               this.dialogFormVisible = false;
               this.getList();
             })
-            .catch(error => {
+            .catch((error) => {
               console.log(error);
             })
             .finally(() => {
@@ -153,8 +201,44 @@ export default {
         }
       });
     },
+    updateBiaya() {
+      this.$refs['biayaForm'].validate((valid) => {
+        if (valid) {
+          this.biayaCreating = true;
+          biayaResource
+            .ubah(this.newBiaya.id, this.newBiaya)
+            .then((response) => {
+              this.$message({
+                message:
+                  'Penambahan ' +
+                  this.newBiaya.nama_biaya +
+                  ' has been created successfully.',
+                type: 'success',
+                duration: 5 * 1000,
+              });
+              this.resetNewBiaya();
+              this.dialogFormVisible = false;
+              this.getList();
+            })
+            .catch((error) => {
+              console.log(error);
+            })
+            .finally(() => {
+              this.biayaCreating = false;
+            });
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
+    },
+    handleUpdate(id) {
+      this.fetchData(id);
+      this.isEdit = true;
+      this.dialogFormVisible = true;
+    },
     resetNewBiaya() {
-      this.newUser = {
+      this.newBiaya = {
         nama_biaya: '',
         tahun_ajaran: '',
         sekolah: '',

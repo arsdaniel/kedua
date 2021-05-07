@@ -16,10 +16,10 @@ class BiayaPendaftaranResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'nama_biaya' => $this->image,
-            'tahun_ajaran' => $this->title,
-            'sekolah' => $this->description,
-            'harga' => $this->status,
+            'nama_biaya' => $this->nama_biaya,
+            'tahun_ajaran' => $this->tahun_ajaran,
+            'sekolah' => $this->sekolah,
+            'harga' => $this->harga,
         ];
     }
 }
