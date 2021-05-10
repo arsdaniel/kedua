@@ -58,7 +58,9 @@ Route::namespace('Api')->group(function () {
     });
 });
 
-Route::apiResource('santri', 'api\SantriController');
+Route::get('santri', 'api\SantriController@index');
+Route::post('santri', 'api\SantriController@store');
+Route::get('santri/{user}', 'api\SantriController@show');
 
 // Fake APIs
 Route::get('/table/list', function () {

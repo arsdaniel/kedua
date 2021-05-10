@@ -76,54 +76,55 @@ class SantriController extends BaseController
      */
     public function store(Request $request)
     {
-        $params = $request->all();
         if ($request->hasFile('image')) {
-            $imageName = $params['image']->getClientOriginalName();
-            $image = $params['image'];
+            $imageName = $request->image->getClientOriginalName();
+            $image = $request->image;
             $image->move('uploads/images/banner', $imageName);
             $user = User::create([
-                'name' => $params['name'],
-                'nama_tengah' => $params['nama_tengah'],
-                'nama_belakang' => $params['nama_belakang'],
-                'email' => $params['email'],
-                'nis' => $params['nis'],
-                'nisn' => $params['nisn'],
-                'no_ijazah' => $params['no_ijazah'],
-                'jenis_kelamin' => $params['jenis_kelamin'],
-                'tempat_lahir' => $params['tempat_lahir'],
-                'tgl_lahir' => $params['tgl_lahir'],
-                'alamat' => $params['alamat'],
-                'provinsi' => $params['provinsi'],
-                'kabupaten' => $params['kabupaten'],
-                'kelurahan' => $params['kelurahan'],
-                'kode_pos' => $params['kode_pos'],
-                'sekolah_asal' => $params['sekolah_asal'],
-                'sekolah_sekarang' => $params['sekolah_sekarang'],
+                'name' => $request->name,
+                'nama_tengah' => $request->nama_tengah,
+                'nama_belakang' => $request->nama_belakang,
+                'email' => $request->email,
+                'nis' => $request->nisn,
+                'nisn' => $request->nisn,
+                'password' => $request->tgl_lahir,
+                'no_ijazah' => $request->no_ijazah,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'tempat_lahir' => $request->tempat_lahir,
+                'tgl_lahir' => $request->tgl_lahir,
+                'alamat' => $request->alamat,
+                'provinsi' => $request->provinsi,
+                'kabupaten' => $request->kabupaten,
+                'kelurahan' => $request->kelurahan,
+                'kode_pos' => $request->kode_pos,
+                'sekolah_asal' => $request->sekolah_asal,
+                'sekolah_sekarang' => $request->sekolah_sekarang,
                 'foto' => '/uploads/images/banner/' . $imageName,
             ]);
-            $role = Role::findByName($params['role']);
+            $role = Role::findByName($request->role);
             $user->syncRoles($role);
         } else {
             $user = User::create([
-                'name' => $params['name'],
-                'nama_tengah' => $params['nama_tengah'],
-                'nama_belakang' => $params['nama_belakang'],
-                'email' => $params['email'],
-                'nis' => $params['nis'],
-                'nisn' => $params['nisn'],
-                'no_ijazah' => $params['no_ijazah'],
-                'jenis_kelamin' => $params['jenis_kelamin'],
-                'tempat_lahir' => $params['tempat_lahir'],
-                'tgl_lahir' => $params['tgl_lahir'],
-                'alamat' => $params['alamat'],
-                'provinsi' => $params['provinsi'],
-                'kabupaten' => $params['kabupaten'],
-                'kelurahan' => $params['kelurahan'],
-                'kode_pos' => $params['kode_pos'],
-                'sekolah_asal' => $params['sekolah_asal'],
-                'sekolah_sekarang' => $params['sekolah_sekarang'],
+                'name' => $request->name,
+                'nama_tengah' => $request->nama_tengah,
+                'nama_belakang' => $request->nama_belakang,
+                'email' => $request->email,
+                'nis' => $request->nisn,
+                'nisn' => $request->nisn,
+                'no_ijazah' => $request->no_ijazah,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'tempat_lahir' => $request->tempat_lahir,
+                'password' => $request->tgl_lahir,
+                'tgl_lahir' => $request->tgl_lahir,
+                'alamat' => $request->alamat,
+                'provinsi' => $request->provinsi,
+                'kabupaten' => $request->kabupaten,
+                'kelurahan' => $request->kelurahan,
+                'kode_pos' => $request->kode_pos,
+                'sekolah_asal' => $request->sekolah_asal,
+                'sekolah_sekarang' => $request->sekolah_sekarang,
             ]);
-            $role = Role::findByName($params['role']);
+            $role = Role::findByName($request->role);
             $user->syncRoles($role);
         }
     }

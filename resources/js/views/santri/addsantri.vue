@@ -318,6 +318,8 @@ export default {
       });
     },
     resetNewBiodataSantri(){
+      this.image = '';
+      this.previewImage = '';
       this.newBiodataSantri = {
         name: '',
         nama_tengah: '',
