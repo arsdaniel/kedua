@@ -1,4 +1,5 @@
 <?php
+
 /**
  * File UserController.php
  *
@@ -46,27 +47,27 @@ class SantriController extends BaseController
         $keyword = Arr::get($searchParams, 'keyword', '');
         $norole = 'students';
         if (!empty($norole)) {
-            $userQuery->whereHas('roles', function($q) use ($norole) { 
+            $userQuery->whereHas('roles', function ($q) use ($norole) {
                 $q->where('name', $norole);
-             });
+            });
         }
         if (!empty($role)) {
             $userQuery->where(function ($query) use ($role) {
                 $query->where('sekolah_sekarang', 'LIKE', $role);
             });
         }
-        
+
         if (!empty($keyword)) {
             $userQuery->where('nama_belakang', 'LIKE', '%' . $keyword . '%');
             $userQuery->orWhere('no_pendaftaran', 'LIKE', '%' . $keyword . '%');
         }
 
-        
+
 
         return SantriResource::collection($userQuery->paginate($limit));
     }
 
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -75,30 +76,55 @@ class SantriController extends BaseController
      */
     public function store(Request $request)
     {
-        $validator = Validator::make(
-            $request->all(),
-            array_merge(
-                $this->getValidationRules(),
-                [
-                    'password' => ['required', 'min:6'],
-                    'confirmPassword' => 'same:password',
-                ]
-            )
-        );
-
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 403);
-        } else {
-            $params = $request->all();
+        $params = $request->all();
+        if ($request->hasFile('image')) {
+            $imageName = $params['image']->getClientOriginalName();
+            $image = $params['image'];
+            $image->move('uploads/images/banner', $imageName);
             $user = User::create([
                 'name' => $params['name'],
+                'nama_tengah' => $params['nama_tengah'],
+                'nama_belakang' => $params['nama_belakang'],
                 'email' => $params['email'],
-                'password' => Hash::make($params['password']),
+                'nis' => $params['nis'],
+                'nisn' => $params['nisn'],
+                'no_ijazah' => $params['no_ijazah'],
+                'jenis_kelamin' => $params['jenis_kelamin'],
+                'tempat_lahir' => $params['tempat_lahir'],
+                'tgl_lahir' => $params['tgl_lahir'],
+                'alamat' => $params['alamat'],
+                'provinsi' => $params['provinsi'],
+                'kabupaten' => $params['kabupaten'],
+                'kelurahan' => $params['kelurahan'],
+                'kode_pos' => $params['kode_pos'],
+                'sekolah_asal' => $params['sekolah_asal'],
+                'sekolah_sekarang' => $params['sekolah_sekarang'],
+                'foto' => '/uploads/images/banner/' . $imageName,
             ]);
             $role = Role::findByName($params['role']);
             $user->syncRoles($role);
-
-            return new SantriResource($user);
+        } else {
+            $user = User::create([
+                'name' => $params['name'],
+                'nama_tengah' => $params['nama_tengah'],
+                'nama_belakang' => $params['nama_belakang'],
+                'email' => $params['email'],
+                'nis' => $params['nis'],
+                'nisn' => $params['nisn'],
+                'no_ijazah' => $params['no_ijazah'],
+                'jenis_kelamin' => $params['jenis_kelamin'],
+                'tempat_lahir' => $params['tempat_lahir'],
+                'tgl_lahir' => $params['tgl_lahir'],
+                'alamat' => $params['alamat'],
+                'provinsi' => $params['provinsi'],
+                'kabupaten' => $params['kabupaten'],
+                'kelurahan' => $params['kelurahan'],
+                'kode_pos' => $params['kode_pos'],
+                'sekolah_asal' => $params['sekolah_asal'],
+                'sekolah_sekarang' => $params['sekolah_sekarang'],
+            ]);
+            $role = Role::findByName($params['role']);
+            $user->syncRoles($role);
         }
     }
 
@@ -130,7 +156,8 @@ class SantriController extends BaseController
         }
 
         $currentUser = Auth::user();
-        if (!$currentUser->isAdmin()
+        if (
+            !$currentUser->isAdmin()
             && $currentUser->id !== $user->id
             && !$currentUser->hasPermission(\App\Laravue\Acl::PERMISSION_USER_MANAGE)
         ) {
@@ -173,7 +200,7 @@ class SantriController extends BaseController
 
         $permissionIds = $request->get('permissions', []);
         $rolePermissionIds = array_map(
-            function($permission) {
+            function ($permission) {
                 return $permission['id'];
             },
 

@@ -145,7 +145,7 @@ export default {
         nama_biaya: [{ required: true, message: 'Name is required', trigger: 'blur' }],
         tahun_ajaran: [{ required: true, message: 'Tahun Ajaran is required', trigger: 'blur' }],
         sekolah: [{ required: true, message: 'Sekolah is required', trigger: 'blur' }],
-        harga: [{ required: true, message: 'Harga is required', trigger: 'blur' }],
+        harga: [{ required: true, type: 'number', message: 'Harga harus di isi dan berupa angka', trigger: 'blur' }],
       },
     };
   },

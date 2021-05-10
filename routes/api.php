@@ -38,11 +38,16 @@ Route::namespace('Api')->group(function () {
         Route::post('/banner/{id}', 'BannerController@update');
         Route::get('/banner', 'BannerController@getBanner');
 
+        //biaya
+        Route::get('/biayaPendaftaran', 'BiayaPendaftaranController@getBiaya');
+        Route::post('/biayaPendaftaran', 'BiayaPendaftaranController@store');
+        Route::get('/biayaPendaftaran/{biayaPendaftaran}', 'BiayaPendaftaranController@show');
+        Route::post('/biayaPendaftaran/{biayaPendaftaran}', 'BiayaPendaftaranController@update');
+
 
         // Api resource routes
         Route::apiResource('roles', 'RoleController')->middleware('permission:' . Acl::PERMISSION_PERMISSION_MANAGE);
         Route::apiResource('users', 'UserController')->middleware('permission:' . Acl::PERMISSION_USER_MANAGE);
-        Route::apiResource('santri', 'SantriController')->middleware('permission:' . Acl::PERMISSION_USER_MANAGE);
         Route::apiResource('permissions', 'PermissionController')->middleware('permission:' . Acl::PERMISSION_PERMISSION_MANAGE);
 
         // Custom routes
@@ -53,12 +58,7 @@ Route::namespace('Api')->group(function () {
     });
 });
 
-
-Route::get('/biayaPendaftaran', 'api\BiayaPendaftaranController@getBiaya');
-Route::post('/biayaPendaftaran', 'api\BiayaPendaftaranController@store');
-Route::get('/biayaPendaftaran/{biayaPendaftaran}', 'api\BiayaPendaftaranController@show');
-Route::post('/biayaPendaftaran/{biayaPendaftaran}', 'api\BiayaPendaftaranController@update');
-
+Route::apiResource('santri', 'api\SantriController');
 
 // Fake APIs
 Route::get('/table/list', function () {
